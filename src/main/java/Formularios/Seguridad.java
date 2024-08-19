@@ -35,6 +35,7 @@ public class Seguridad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NameUser.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -57,6 +58,7 @@ public class Seguridad extends javax.swing.JFrame {
         jPanel1.add(Usertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 300, 20));
         jPanel1.add(Passtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 238, 300, 20));
         jPanel1.add(Passtxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 312, 300, -1));
+
 
         ButConf.setBackground(new java.awt.Color(255, 102, 0));
         ButConf.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
@@ -83,6 +85,7 @@ public class Seguridad extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

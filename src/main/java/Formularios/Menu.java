@@ -38,8 +38,10 @@ public class Menu extends javax.swing.JFrame {
         ButPerfilBiometrico = new javax.swing.JButton();
         ButTraining = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -111,6 +113,9 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
+        jLabel2.setText("jLabel1");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +173,9 @@ public class Menu extends javax.swing.JFrame {
         Formularios.LogIn Inicio = new Formularios.LogIn();
         Inicio.setVisible(true);
         Inicio.setLocationRelativeTo(null);
+        dispose();
     }//GEN-LAST:event_SalButActionPerformed
+
 
     private void ButPerfilBiometricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButPerfilBiometricoActionPerformed
         dispose();
@@ -239,6 +246,7 @@ public class Menu extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_RepAsisActionPerformed
 
+
     private void ComRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComRegisActionPerformed
         dispose();
         ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\DifRostros.py");
@@ -275,6 +283,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton RepAsis;
     private javax.swing.JButton SalBut;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

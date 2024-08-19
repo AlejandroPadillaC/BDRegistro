@@ -29,6 +29,7 @@ public class LogIn extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -48,6 +49,7 @@ public class LogIn extends javax.swing.JFrame {
         jPanel1.add(Usertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 250, 20));
         jPanel1.add(Contratxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 272, 250, -1));
 
+
         BtnLogIn.setBackground(new java.awt.Color(255, 102, 0));
         BtnLogIn.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         BtnLogIn.setText("Iniciar Sesión");
@@ -56,7 +58,9 @@ public class LogIn extends javax.swing.JFrame {
                 BtnLogInActionPerformed(evt);
             }
         });
+
         jPanel1.add(BtnLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 250, 20));
+
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -76,6 +80,7 @@ public class LogIn extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\ProyectoFinal\\DataBase\\BDRegistro\\BDRegistro\\src\\main\\java\\Imagenes\\21.png")); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 490));
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

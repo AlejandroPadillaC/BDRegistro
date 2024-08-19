@@ -62,6 +62,8 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 0));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 102, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuarios"));
@@ -100,7 +102,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 txtidActionPerformed(evt);
             }
         });
-        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 12, 100, 20));
+        jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 100, 10));
         jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 100, 20));
         jPanel1.add(txtnombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 42, 100, 20));
         jPanel1.add(txtapellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 72, 100, 20));
@@ -157,8 +159,11 @@ public class FormPrincipal extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 210, 210, 272));
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-4, -2, 240, 520));
+
         jPanel3.setBackground(new java.awt.Color(0, 0, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Usuarios"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tbusuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -226,6 +231,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

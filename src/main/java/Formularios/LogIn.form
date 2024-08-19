@@ -3,6 +3,7 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -71,14 +72,22 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+<<<<<<< HEAD
               <AbsoluteConstraints x="170" y="200" width="250" height="20"/>
+=======
+              <AbsoluteConstraints x="170" y="200" width="250" height="-1"/>
+>>>>>>> e90fa7ab304a9f481edf6d0ede37ac58856afe9d
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JPasswordField" name="Contratxt">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+<<<<<<< HEAD
               <AbsoluteConstraints x="170" y="272" width="250" height="-1"/>
+=======
+              <AbsoluteConstraints x="170" y="270" width="250" height="20"/>
+>>>>>>> e90fa7ab304a9f481edf6d0ede37ac58856afe9d
             </Constraint>
           </Constraints>
         </Component>
@@ -97,7 +106,11 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+<<<<<<< HEAD
               <AbsoluteConstraints x="170" y="350" width="250" height="20"/>
+=======
+              <AbsoluteConstraints x="170" y="350" width="240" height="20"/>
+>>>>>>> e90fa7ab304a9f481edf6d0ede37ac58856afe9d
             </Constraint>
           </Constraints>
         </Component>
@@ -129,6 +142,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+<<<<<<< HEAD
               <Image iconType="2" name="C:\Users\Alejandro Padilla\Documents\Programacion\POO\ProyectoFinal\DataBase\BDRegistro\BDRegistro\src\main\java\Imagenes\21.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
@@ -136,6 +150,15 @@
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="0" y="0" width="880" height="490"/>
+=======
+              <Image iconType="2" name="C:\Users\Flia_Padilla_Camargo\Documents\Programacion\POO\EMPRESA\BDRegistro\src\main\java\Imagenes\21.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="."/>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="-3" y="-4" width="880" height="500"/>
+>>>>>>> e90fa7ab304a9f481edf6d0ede37ac58856afe9d
             </Constraint>
           </Constraints>
         </Component>

@@ -18,7 +18,5 @@ public class EMPRESA {
         /*Formularios.FormPrincipal objetoFormulario = new Formularios.FormPrincipal();
         objetoFormulario.setVisible(true);
         objetoFormulario.setLocationRelativeTo(null);*/
-        
-        
     }
 }

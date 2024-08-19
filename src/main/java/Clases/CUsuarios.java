@@ -45,7 +45,7 @@ public class CUsuarios {
     public void MostrarComboBox(JComboBox comboBoxIngreso) { // Corregir el nombre del método
         Clases.CConexion objetoConexion = new Clases.CConexion();
  
-        String sql = "select * from Ingreso;"; // Corregir la consulta SQL
+        String sql = "select * from Ingreso;"; 
         
         try (Statement st = objetoConexion.estableceConexion().createStatement()) {
             ResultSet rs = st.executeQuery(sql);
@@ -70,6 +70,7 @@ public class CUsuarios {
         CConexion objetoConexion = new CConexion();
  
         String consulta="INSERT INTO usuarios (nombres, apellidos, fkIngreso, edad, Fingreso, foto, Documento) VALUES (?,?,?,?,?,?,?);";
+
 
         FileInputStream fis = null;
         try {
@@ -96,6 +97,7 @@ public class CUsuarios {
             cs.setObject(4, edadText.isEmpty() ? null : Integer.parseInt(edadText));
             
             Date fechaSeleccionada = fnacimiento.getDate();
+
             cs.setDate(5, fechaSeleccionada != null ? new java.sql.Date(fechaSeleccionada.getTime()) : null);
             
             if (fis != null) {
@@ -163,6 +165,7 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
             java.sql.Date fechaSQL = rs.getDate("Fingreso");
             String nuevaFecha = sdf.format(fechaSQL);
             String Documento = rs.getString("Documento");
+
      
             byte [] imageBytes = rs.getBytes("foto");
             Image foto = null;
@@ -175,8 +178,8 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null,"Eror:"+ e.toString());
                 }
-         
                 modelo.addRow(new Object[]{id,nombres,apellidos,sexo,edad,nuevaFecha,foto,Documento});
+
             }
      
             tablaTotalUsuarios.setModel(modelo);
@@ -190,11 +193,9 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
         objetoConexion.cerrarConexion();
     }
 }
- 
     public void Seleccionar(JTable tbusuarios, JTextField txtid, JTextField txtnombres, JTextField txtapellidos, JComboBox<String> cbIngreso, JTextField txtedad, JDateChooser dffechanacimiento, JLabel lblimagen, JTextField Txtdocumento) {
        
         int fila = tbusuarios.getSelectedRow();
-        
         if(fila>=0){
             
             Object id = tbusuarios.getValueAt(fila, 0);
@@ -205,7 +206,6 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
             Object fecha = tbusuarios.getValueAt(fila, 5);
             Object imagen = tbusuarios.getValueAt(fila, 6);
             Object documento = tbusuarios.getValueAt(fila, 7);
-            
             
              // Establecer los valores en los componentes, manejando valores nulos
         txtid.setText(id != null ? id.toString() : "");
@@ -248,8 +248,8 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
         }
     }  
     
-    
 public void ModificarUsuarios(JTextField id, JTextField nombres, JTextField apellidos, JComboBox comboBoxIngreso, JTextField edad, JDateChooser fnacimiento, File foto, JTextField Documento) {
+
     CConexion objetoConexion = new CConexion();
     
     String consulta = "UPDATE Usuarios SET nombres=?, apellidos=?, fkIngreso=?, edad=?, Fingreso=?, foto=?, Documento=? WHERE id=?";
