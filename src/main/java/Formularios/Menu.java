@@ -4,6 +4,9 @@
  */
 package Formularios;
 
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alejandro Padilla
@@ -32,23 +35,31 @@ public class Menu extends javax.swing.JFrame {
         ConfSeg = new javax.swing.JButton();
         ComRegis = new javax.swing.JButton();
         SalBut = new javax.swing.JButton();
+        ButPerfilBiometrico = new javax.swing.JButton();
+        ButTraining = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EditEmp.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        EditEmp.setText("Edicion y creacion de perfiles");
+        EditEmp.setText("Gestion Perfiles");
         EditEmp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditEmpActionPerformed(evt);
             }
         });
-        jPanel1.add(EditEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 220, 30));
+        jPanel1.add(EditEmp, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 190, 30));
 
         RepAsis.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         RepAsis.setText("Registro de Asistencia");
-        jPanel1.add(RepAsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 220, 30));
+        RepAsis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepAsisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(RepAsis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 190, 30));
 
         ConfSeg.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         ConfSeg.setText("Configuracion seguridad");
@@ -57,12 +68,17 @@ public class Menu extends javax.swing.JFrame {
                 ConfSegActionPerformed(evt);
             }
         });
-        jPanel1.add(ConfSeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 220, 30));
+        jPanel1.add(ConfSeg, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 190, 30));
 
         ComRegis.setBackground(new java.awt.Color(255, 102, 0));
         ComRegis.setFont(new java.awt.Font("Roboto Black", 0, 16)); // NOI18N
         ComRegis.setText("Comenzar registro de asistencia");
-        jPanel1.add(ComRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 200, 290, 70));
+        ComRegis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComRegisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ComRegis, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 330, 80));
 
         SalBut.setBackground(new java.awt.Color(255, 102, 0));
         SalBut.setText("X");
@@ -71,7 +87,29 @@ public class Menu extends javax.swing.JFrame {
                 SalButActionPerformed(evt);
             }
         });
-        jPanel1.add(SalBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 70, 70));
+        jPanel1.add(SalBut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 70, 70));
+
+        ButPerfilBiometrico.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ButPerfilBiometrico.setText("Crear Perfil Biometrico");
+        ButPerfilBiometrico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButPerfilBiometricoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButPerfilBiometrico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 190, 30));
+
+        ButTraining.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        ButTraining.setText("Entrenar Modelo");
+        ButTraining.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButTrainingActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButTraining, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 190, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\ProyectoFinal\\DataBase\\BDRegistro\\BDRegistro\\src\\main\\java\\Imagenes\\MenuOriginalSize.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,16 +170,111 @@ public class Menu extends javax.swing.JFrame {
         Inicio.setLocationRelativeTo(null);
     }//GEN-LAST:event_SalButActionPerformed
 
+    private void ButPerfilBiometricoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButPerfilBiometricoActionPerformed
+        dispose();
+        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\CapturaImagenes.py");
+                pb.directory(new File("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial"));
+                try {
+                    Process p = pb.start();
+                    // Wait for the Python script to finish executing
+                    int exitCode = p.waitFor();
+                    if (exitCode == 0) {
+                        // Python script finished successfully
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        menu.setLocationRelativeTo(null);
+                        
+                    } else {
+                        // Python script failed with an error
+                        JOptionPane.showMessageDialog(null, "Python script failed with error code " + exitCode);
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error running Python script: " + ex.getMessage());
+                }
+    }//GEN-LAST:event_ButPerfilBiometricoActionPerformed
+
+    private void ButTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButTrainingActionPerformed
+        dispose();
+        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\TrainingFR.py");
+                pb.directory(new File("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial"));
+                try {
+                    Process p = pb.start();
+                    // Wait for the Python script to finish executing
+                    int exitCode = p.waitFor();
+                    if (exitCode == 0) {
+                        // Python script finished successfully
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        menu.setLocationRelativeTo(null);
+                        
+                    } else {
+                        // Python script failed with an error
+                        JOptionPane.showMessageDialog(null, "Python script failed with error code " + exitCode);
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error running Python script: " + ex.getMessage());
+                }
+    }//GEN-LAST:event_ButTrainingActionPerformed
+
+    private void RepAsisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepAsisActionPerformed
+       dispose();
+        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\conexion.py");
+                pb.directory(new File("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial"));
+                try {
+                    Process p = pb.start();
+                    // Wait for the Python script to finish executing
+                    int exitCode = p.waitFor();
+                    if (exitCode == 0) {
+                        // Python script finished successfully
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        menu.setLocationRelativeTo(null);
+                        
+                    } else {
+                        // Python script failed with an error
+                        JOptionPane.showMessageDialog(null, "Python script failed with error code " + exitCode);
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error running Python script: " + ex.getMessage());
+                }
+    }//GEN-LAST:event_RepAsisActionPerformed
+
+    private void ComRegisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComRegisActionPerformed
+        dispose();
+        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\DifRostros.py");
+                pb.directory(new File("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial"));
+                try {
+                    Process p = pb.start();
+                    // Wait for the Python script to finish executing
+                    int exitCode = p.waitFor();
+                    if (exitCode == 0) {
+                        // Python script finished successfully
+                        Menu menu = new Menu();
+                        menu.setVisible(true);
+                        menu.setLocationRelativeTo(null);
+                        
+                    } else {
+                        // Python script failed with an error
+                        JOptionPane.showMessageDialog(null, "Python script failed with error code " + exitCode);
+                    }
+                } catch (Exception ex) {
+                    System.err.println("Error running Python script: " + ex.getMessage());
+                }
+    }//GEN-LAST:event_ComRegisActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButPerfilBiometrico;
+    private javax.swing.JButton ButTraining;
     private javax.swing.JButton ComRegis;
     private javax.swing.JButton ConfSeg;
     private javax.swing.JButton EditEmp;
     private javax.swing.JButton RepAsis;
     private javax.swing.JButton SalBut;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

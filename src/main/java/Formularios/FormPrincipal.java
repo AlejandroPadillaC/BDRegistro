@@ -18,7 +18,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         initComponents();
 
          Clases.CUsuarios objetoUsuario = new Clases.CUsuarios();
-         objetoUsuario.MostrarSexoCombo(cbIngreso);
+         objetoUsuario.MostrarComboBox(cbIngreso);
          objetoUsuario.MostrarUsuarios(tbusuarios);
          
          txtrutaimagen.setEnabled(false);
@@ -58,7 +58,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbusuarios = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        ButtSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 102, 0));
@@ -178,10 +178,10 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbusuarios);
 
-        jButton1.setText("Regresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ButtSalir.setText("Regresar");
+        ButtSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ButtSalirActionPerformed(evt);
             }
         });
 
@@ -191,20 +191,20 @@ public class FormPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(17, 17, 17))
+                .addComponent(ButtSalir)
+                .addGap(21, 21, 21))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(16, 16, 16))
+                .addComponent(ButtSalir)
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,8 +212,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -221,13 +220,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 493, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,29 +232,27 @@ public class FormPrincipal extends javax.swing.JFrame {
 
     private void tbusuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbusuariosMouseClicked
         Clases.CUsuarios objetoUsuarios = new Clases.CUsuarios();
-        objetoUsuarios.Seleccionar(tbusuarios, txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, lblimagen);
+        objetoUsuarios.Seleccionar(tbusuarios, txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, lblimagen, txtDocumento);
     }//GEN-LAST:event_tbusuariosMouseClicked
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         Clases.CUsuarios objetoUsuarios = new Clases.CUsuarios();
         objetoUsuarios.EliminarUsuario(txtid);
-        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen);
+        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen, txtDocumento);
         objetoUsuarios.MostrarUsuarios(tbusuarios);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         Clases.CUsuarios objetoUsuarios = new Clases.CUsuarios();
-        objetoUsuarios.ModificarUsuarios(txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado);
-        objetoUsuarios.ModificarUsuarios(txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado);
-        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen);
+        objetoUsuarios.ModificarUsuarios(txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado, txtDocumento);
+        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen, txtDocumento);
         objetoUsuarios.MostrarUsuarios(tbusuarios);
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         Clases.CUsuarios objetoUsuarios = new Clases.CUsuarios();
-        objetoUsuarios.AgregarUsuario(txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado);
-        objetoUsuarios.ModificarUsuarios(txtid, txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado);
-        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen);
+        objetoUsuarios.AgregarUsuario(txtnombres, txtapellidos, cbIngreso, txtedad, dffechanacimiento, archivoseleccionado, txtDocumento);
+        objetoUsuarios.limpriarCampos(txtid, txtnombres, txtapellidos, txtedad, dffechanacimiento, txtrutaimagen, lblimagen, txtDocumento);
         objetoUsuarios.MostrarUsuarios(tbusuarios);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -295,16 +290,17 @@ public class FormPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtidActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ButtSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtSalirActionPerformed
         Menu menuMain = new Menu();
         menuMain.setVisible(true);
         menuMain.setLocationRelativeTo(null);
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ButtSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Apellidos;
+    private javax.swing.JButton ButtSalir;
     private javax.swing.JLabel Documento;
     private javax.swing.JLabel Edad;
     private javax.swing.JLabel FechaInhg;
@@ -318,7 +314,6 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnexplorar;
     private javax.swing.JComboBox<String> cbIngreso;
     private com.toedter.calendar.JDateChooser dffechanacimiento;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

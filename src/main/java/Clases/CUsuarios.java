@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,60 +36,76 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CUsuarios {
     
-    int idSexo;
+    int id;
 
-    public void establecerIdSexo(int idSexo) {
-        this.idSexo = idSexo; // Corregir el nombre de la variable
+    public void establecerId(int id) {
+        this.id = id; // Corregir el nombre de la variable
     }
        
-    public void MostrarSexoCombo(JComboBox comboSexo) { // Corregir el nombre del método
+    public void MostrarComboBox(JComboBox comboBoxIngreso) { // Corregir el nombre del método
         Clases.CConexion objetoConexion = new Clases.CConexion();
  
         String sql = "select * from Ingreso;"; // Corregir la consulta SQL
         
         try (Statement st = objetoConexion.estableceConexion().createStatement()) {
             ResultSet rs = st.executeQuery(sql);
-            comboSexo.removeAllItems();
+            comboBoxIngreso.removeAllItems();
      
             while (rs.next()) {
                 String nombreSexo = rs.getString("Ingreso");
-                int idSexo = rs.getInt("id"); // Usar una variable local para idSexo
-                comboSexo.addItem(nombreSexo);
-                comboSexo.putClientProperty(nombreSexo, idSexo);
+                int id = rs.getInt("id"); // Usar una variable local para 
+                comboBoxIngreso.addItem(nombreSexo);
+                comboBoxIngreso.putClientProperty(nombreSexo, id);
             }
              
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al mostrar sexo: " + e.toString());
+            JOptionPane.showMessageDialog(null, "Error al mostrar ingreso: " + e.toString());
         } finally {
             objetoConexion.cerrarConexion();
         }
     }
 
-    public void  AgregarUsuario(JTextField nombres,JTextField apellidos,JComboBox combosexo,JTextField edad, JDateChooser fnacimiento, File foto ){
+    public void  AgregarUsuario(JTextField nombres,JTextField apellidos,JComboBox comboBoxIngreso,JTextField edad, JDateChooser fnacimiento, File foto, JTextField Documento ){
     
         CConexion objetoConexion = new CConexion();
  
-        String consulta="INSERT INTO usuarios (nombres, apellidos, fkIngreso, edad, Fingreso, foto) VALUES (?, ?, ?, ?,?,?);";
+        String consulta="INSERT INTO usuarios (nombres, apellidos, fkIngreso, edad, Fingreso, foto, Documento) VALUES (?,?,?,?,?,?,?);";
 
-
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = new FileInputStream(foto);
+            
+            if (foto != null && foto.exists()) {
+                fis = new FileInputStream(foto);
+            }
+            
             CallableStatement cs = objetoConexion.estableceConexion().prepareCall(consulta);
-            cs.setString(1, nombres.getText());
-            cs.setString(2, apellidos.getText());
-     
-            int idsexo= (int) combosexo.getClientProperty(combosexo.getSelectedItem());
-     
-            cs.setInt(3, idsexo);
-            cs.setInt(4, Integer.parseInt(edad.getText()));
-     
+            
+            String nombre = nombres.getText().trim();
+            cs.setString(1, nombre.isEmpty() ? null : nombre);
+
+            String apellido = apellidos.getText().trim();
+            cs.setString(2, apellido.isEmpty() ? null : apellido);
+            
+            Object selectedItem = comboBoxIngreso.getSelectedItem();
+            int id = (selectedItem != null && comboBoxIngreso.getClientProperty(selectedItem) instanceof Integer)
+                ? (int) comboBoxIngreso.getClientProperty(selectedItem)
+                : null;
+            cs.setObject(3, id);
+            
+            String edadText = edad.getText().trim();
+            cs.setObject(4, edadText.isEmpty() ? null : Integer.parseInt(edadText));
+            
             Date fechaSeleccionada = fnacimiento.getDate();
-     
-            java.sql.Date fechaSQL = new java.sql.Date(fechaSeleccionada.getTime());
-     
-            cs.setDate(5,fechaSQL);
-     
-            cs.setBinaryStream(6, fis,(int)foto.length());
+            cs.setDate(5, fechaSeleccionada != null ? new java.sql.Date(fechaSeleccionada.getTime()) : null);
+            
+            if (fis != null) {
+            cs.setBinaryStream(6, fis, (int) foto.length());
+            } else {
+            cs.setBinaryStream(6, null);
+            }
+            
+            String documento = Documento.getText().trim();
+            cs.setString(7, documento.isEmpty() ? null : documento);
      
              cs.execute();
      
@@ -96,8 +113,17 @@ public class CUsuarios {
         } 
         catch (HeadlessException | FileNotFoundException | NumberFormatException | SQLException e) {
             JOptionPane.showMessageDialog(null,"Error al guardar, error: "+e.toString());
-     
         }
+        finally {
+        // Asegurarse de cerrar el FileInputStream
+        if (fis != null) {
+            try {
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
 
 public void MostrarUsuarios(JTable tablaTotalUsuarios){            
@@ -115,10 +141,11 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
     modelo.addColumn("Edad");
     modelo.addColumn("F.ingreso"); 
     modelo.addColumn("Foto");
+    modelo.addColumn("Documento");
  
     tablaTotalUsuarios.setModel(modelo);
     
-        sql = "SELECT usuarios.id, usuarios.nombres, usuarios.apellidos, Ingreso.Ingreso, usuarios.edad, usuarios.Fingreso, usuarios.foto FROM usuarios INNER JOIN Ingreso ON usuarios.fkIngreso = Ingreso.id;";
+        sql = "SELECT usuarios.id, usuarios.nombres, usuarios.apellidos, Ingreso.Ingreso, usuarios.edad, usuarios.Fingreso, usuarios.foto, usuarios.Documento FROM usuarios INNER JOIN Ingreso ON usuarios.fkIngreso = Ingreso.id;";
  
     try {
         Statement st = objetoConexion.estableceConexion().createStatement();
@@ -135,6 +162,7 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy;");
             java.sql.Date fechaSQL = rs.getDate("Fingreso");
             String nuevaFecha = sdf.format(fechaSQL);
+            String Documento = rs.getString("Documento");
      
             byte [] imageBytes = rs.getBytes("foto");
             Image foto = null;
@@ -148,7 +176,7 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
                     JOptionPane.showMessageDialog(null,"Eror:"+ e.toString());
                 }
          
-                modelo.addRow(new Object[]{id,nombres,apellidos,sexo,edad,nuevaFecha,foto});
+                modelo.addRow(new Object[]{id,nombres,apellidos,sexo,edad,nuevaFecha,foto,Documento});
             }
      
             tablaTotalUsuarios.setModel(modelo);
@@ -163,111 +191,100 @@ public void MostrarUsuarios(JTable tablaTotalUsuarios){
     }
 }
  
-   /* public void Seleccionar (JTable totalUsuarios, JTextField id,JTextField nombres,JTextField apellidos, JComboBox sexo, JTextField edad, JDateChooser fnacimiento,JTable foto){
-       
-        int fila = totalUsuarios.getSelectedRow();
-        
-        if(fila>=1){
-            
-            id.setText(totalUsuarios.getValueAt(fila,0).toString());
-            nombres.setText(totalUsuarios.getValueAt(fila,1).toString());
-            apellidos.setText(totalUsuarios.getValueAt(fila,2).toString());
-            
-            sexo.setSelectedItem(totalUsuarios.getValueAt(fila, 3));
-            edad.setText(totalUsuarios.getValueAt(fila,4).toString());
-            
-            String fechaString = totalUsuarios.getValueAt(fila, 5).toString();
-            
-            Image imagen = (Image) totalUsuarios.getValueAt(fila, 6);
-            
-            ImageIcon originalIcon = new ImageIcon(imagen);
-            
-            int lblanchura = foto.getWidth();
-            int lblaltura = foto.getWidth();
-            
-            Image imagenEscalada = originalIcon.getImage().getScaledInstance(lblanchura,lblaltura, Image.SCALE_SMOOTH);
-            
-            foto.setIcon(new ImageIcon(imagenEscalada));
-            
-            
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date fechaDate = sdf.parse(fechaString);
-                
-                fnacimiento.setDate(fechaDate);
-                
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al seleccionar, error:" + e.toString());
-            }
-            
-        
-        }
-    }
-*/
-    public void Seleccionar(JTable tbusuarios, JTextField txtid, JTextField txtnombres, JTextField txtapellidos, JComboBox<String> cbsexo, JTextField txtedad, JDateChooser dffechanacimiento, JLabel lblimagen) {
+    public void Seleccionar(JTable tbusuarios, JTextField txtid, JTextField txtnombres, JTextField txtapellidos, JComboBox<String> cbIngreso, JTextField txtedad, JDateChooser dffechanacimiento, JLabel lblimagen, JTextField Txtdocumento) {
        
         int fila = tbusuarios.getSelectedRow();
         
-        if(fila>=1){
+        if(fila>=0){
             
-            txtid.setText(tbusuarios.getValueAt(fila,0).toString());
-            txtnombres.setText(tbusuarios.getValueAt(fila,1).toString());
-            txtapellidos.setText(tbusuarios.getValueAt(fila,2).toString());
-            
-            cbsexo.setSelectedItem(tbusuarios.getValueAt(fila, 3));
-            txtedad.setText(tbusuarios.getValueAt(fila,4).toString());
-            
-            String fechaString = tbusuarios.getValueAt(fila, 5).toString();
-            
-            Image imagen = (Image) tbusuarios.getValueAt(fila, 6);
-            
-            ImageIcon originalIcon = new ImageIcon(imagen);
-            
-            int lblanchura = lblimagen.getWidth();
-            int lblaltura = lblimagen.getWidth();
-            
-            Image imagenEscalada = originalIcon.getImage().getScaledInstance(lblanchura,lblaltura, Image.SCALE_SMOOTH);
-            
-            lblimagen.setIcon(new ImageIcon(imagenEscalada));
+            Object id = tbusuarios.getValueAt(fila, 0);
+            Object nombres = tbusuarios.getValueAt(fila, 1);
+            Object apellidos = tbusuarios.getValueAt(fila, 2);
+            Object ingreso = tbusuarios.getValueAt(fila, 3);
+            Object edad = tbusuarios.getValueAt(fila, 4);
+            Object fecha = tbusuarios.getValueAt(fila, 5);
+            Object imagen = tbusuarios.getValueAt(fila, 6);
+            Object documento = tbusuarios.getValueAt(fila, 7);
             
             
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date fechaDate = sdf.parse(fechaString);
-                
-                dffechanacimiento.setDate(fechaDate);
-                
-            } catch (ParseException e) {
-                JOptionPane.showMessageDialog(null, "Error al seleccionar, error:" + e.toString());
-            }
-            
+             // Establecer los valores en los componentes, manejando valores nulos
+        txtid.setText(id != null ? id.toString() : "");
+        txtnombres.setText(nombres != null ? nombres.toString() : "");
+        txtapellidos.setText(apellidos != null ? apellidos.toString() : "");
+        Txtdocumento.setText(documento != null ? documento.toString() : "" );
         
+        // Aquí asumimos que el JComboBox se ha llenado con las opciones correspondientes
+        if (ingreso != null) {
+            cbIngreso.setSelectedItem(ingreso.toString());
+        } else {
+            cbIngreso.setSelectedItem(null);
+        }
+
+        txtedad.setText(edad != null ? edad.toString() : "");
+
+        if (fecha != null) {
+            try {
+                // Aquí suponemos que el formato de fecha en la tabla es compatible con SimpleDateFormat
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Cambia el formato según tu base de datos
+                Date fechaDate = sdf.parse(fecha.toString());
+                dffechanacimiento.setDate(fechaDate);
+            } catch (ParseException e) {
+                JOptionPane.showMessageDialog(null, "Error al seleccionar la fecha, error: " + e.toString());
+            }
+        } else {
+            dffechanacimiento.setDate(null);
+        }
+
+        if (imagen != null && imagen instanceof Image) {
+            // Escalar imagen
+            ImageIcon originalIcon = new ImageIcon((Image) imagen);
+            int lblanchura = lblimagen.getWidth();
+            int lblaltura = lblimagen.getHeight();
+            Image imagenEscalada = originalIcon.getImage().getScaledInstance(lblanchura, lblaltura, Image.SCALE_SMOOTH);
+            lblimagen.setIcon(new ImageIcon(imagenEscalada));
+        } else {
+            lblimagen.setIcon(null); // Limpiar la imagen si es nula
+            }
         }
     }  
-public void ModificarUsuarios(JTextField id, JTextField nombres, JTextField apellidos, JComboBox combosexo, JTextField edad, JDateChooser fnacimiento, File foto) {
+    
+    
+public void ModificarUsuarios(JTextField id, JTextField nombres, JTextField apellidos, JComboBox comboBoxIngreso, JTextField edad, JDateChooser fnacimiento, File foto, JTextField Documento) {
     CConexion objetoConexion = new CConexion();
     
-    String consulta = "UPDATE Usuarios SET nombres=?, apellidos=?, fkIngreso=?, edad=?, Fingreso=?, foto=? WHERE id=?";
+    String consulta = "UPDATE Usuarios SET nombres=?, apellidos=?, fkIngreso=?, edad=?, Fingreso=?, foto=?, Documento=? WHERE id=?";
     
     try {
         FileInputStream fis = new FileInputStream(foto);
         PreparedStatement ps = objetoConexion.estableceConexion().prepareStatement(consulta);
         
-        ps.setString(1, nombres.getText());
-        ps.setString(2, apellidos.getText());
         
-        int idSexo = (int) combosexo.getClientProperty(combosexo.getSelectedItem());
-        ps.setInt(3, idSexo);
+        String nombre = nombres.getText().trim();
+        ps.setString(1, nombre.isEmpty() ? null : nombre);
         
-        ps.setInt(4, Integer.parseInt(edad.getText()));
+        String apellido = apellidos.getText().trim();
+        ps.setString(2, apellido.isEmpty() ? null : apellido);
+        
+        int ingreso = (int) comboBoxIngreso.getClientProperty(comboBoxIngreso.getSelectedItem());
+        ps.setInt(3, ingreso);
+        
+        String edadText = edad.getText().trim();
+        ps.setObject(4, edadText.isEmpty() ? null : Integer.parseInt(edadText));
         
         Date fechaSeleccionada = fnacimiento.getDate();
         java.sql.Date fechaSQL = new java.sql.Date(fechaSeleccionada.getTime());
-        ps.setDate(5, fechaSQL);
+        ps.setDate(5, fechaSQL); 
         
-        ps.setBinaryStream(6, fis, (int) foto.length());
+        if (fis != null) {
+            ps.setBinaryStream(6, fis, (int) foto.length());
+            } else {
+            ps.setBinaryStream(6, null);
+            }
+            
+        String documento = Documento.getText().trim();
+        ps.setString(7, documento.isEmpty() ? null : documento);
         
-        ps.setInt(7, Integer.parseInt(id.getText()));
+        ps.setInt(8, Integer.parseInt(id.getText()));
         
         ps.executeUpdate();
         
@@ -301,16 +318,15 @@ public void ModificarUsuarios(JTextField id, JTextField nombres, JTextField apel
         }
     }
     
-    public void limpriarCampos(JTextField id,JTextField nombres,JTextField apellidos,JTextField edad, JDateChooser Fingreso, JTextField rutaimagen,JLabel imagencontenido){
+    public void limpriarCampos(JTextField id,JTextField nombres,JTextField apellidos,JTextField edad, JDateChooser Fingreso, JTextField rutaimagen,JLabel imagencontenido, JTextField Documento){
      id.setText("");
      nombres.setText("");
      apellidos.setText("");
-     
-     Calendar calendario = Calendar.getInstance();
-     
-     Fingreso.setDate(calendario.getTime());
+     Documento.setText("");
+     edad.setText("");
      rutaimagen.setText("");
-     
+     Calendar calendario = Calendar.getInstance();
+     Fingreso.setDate(calendario.getTime());
      imagencontenido.setIcon(null);
     }
 }

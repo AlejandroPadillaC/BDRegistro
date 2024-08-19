@@ -3,16 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Formularios;
+import Clases.SegurLogica;
 
-/**
- *
- * @author Alejandro Padilla
- */
 public class Seguridad extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Seguridad
-     */
+    
+    SegurLogica security = new SegurLogica();
     public Seguridad() {
         initComponents();
     }
@@ -35,8 +30,10 @@ public class Seguridad extends javax.swing.JFrame {
         Passtxt2 = new javax.swing.JPasswordField();
         ButConf = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -57,39 +54,41 @@ public class Seguridad extends javax.swing.JFrame {
                 UsertxtActionPerformed(evt);
             }
         });
-        jPanel1.add(Usertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, 300, 30));
-        jPanel1.add(Passtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 238, 300, 30));
-        jPanel1.add(Passtxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 312, 300, 30));
+        jPanel1.add(Usertxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 300, 20));
+        jPanel1.add(Passtxt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 238, 300, 20));
+        jPanel1.add(Passtxt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 312, 300, -1));
 
         ButConf.setBackground(new java.awt.Color(255, 102, 0));
         ButConf.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         ButConf.setText("Confirmar cambios");
-        jPanel1.add(ButConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 390, 300, -1));
+        ButConf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButConfActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ButConf, new org.netbeans.lib.awtextra.AbsoluteConstraints(195, 390, 300, -1));
 
+        jButton1.setBackground(new java.awt.Color(255, 102, 0));
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(786, 460, 80, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 80, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\ProyectoFinal\\DataBase\\BDRegistro\\BDRegistro\\src\\main\\java\\Imagenes\\16.png")); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void UsertxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsertxtActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_UsertxtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -98,6 +97,10 @@ public class Seguridad extends javax.swing.JFrame {
         menuMain.setLocationRelativeTo(null);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ButConfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButConfActionPerformed
+        security.CambiaContra(Usertxt,Passtxt1,Passtxt2);
+    }//GEN-LAST:event_ButConfActionPerformed
 
   
 
@@ -110,6 +113,7 @@ public class Seguridad extends javax.swing.JFrame {
     private javax.swing.JPasswordField Passtxt2;
     private javax.swing.JTextField Usertxt;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
