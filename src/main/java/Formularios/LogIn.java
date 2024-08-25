@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 public class LogIn extends javax.swing.JFrame {
@@ -13,8 +15,18 @@ public class LogIn extends javax.swing.JFrame {
     
     public LogIn() {
         initComponents();
+        setIconImage(getIconImage());
+        setTitle("Puntualify");
     }
-
+    
+    // Icono Jframe
+    @Override
+    public Image getIconImage() {
+    // Accede a la imagen en la carpeta resources
+        Image retValue = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/LogoPOO.png"));
+    return retValue;
+}
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

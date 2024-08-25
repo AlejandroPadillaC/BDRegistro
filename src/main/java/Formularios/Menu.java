@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import javax.swing.JOptionPane;
 
@@ -18,6 +20,15 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        setIconImage(getIconImage());
+        setTitle("Puntualify");
+    }
+    
+    @Override
+    public Image getIconImage() {
+    // Accede a la imagen en la carpeta resources
+        Image retValue = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/LogoPOO.png"));
+    return retValue;
     }
 
     /**

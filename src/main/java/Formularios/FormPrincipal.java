@@ -1,6 +1,7 @@
 package Formularios;
 
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -16,12 +17,20 @@ public class FormPrincipal extends javax.swing.JFrame {
     public FormPrincipal() {
         
         initComponents();
-
-         Clases.CUsuarios objetoUsuario = new Clases.CUsuarios();
-         objetoUsuario.MostrarComboBox(cbIngreso);
-         objetoUsuario.MostrarUsuarios(tbusuarios);
+        setIconImage(getIconImage());
+        setTitle("Puntualify");
+        Clases.CUsuarios objetoUsuario = new Clases.CUsuarios();
+        objetoUsuario.MostrarComboBox(cbIngreso);
+        objetoUsuario.MostrarUsuarios(tbusuarios);
          
          txtrutaimagen.setEnabled(false);
+    }
+    
+    @Override
+    public Image getIconImage() {
+    // Accede a la imagen en la carpeta resources
+        Image retValue = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/LogoPOO.png"));
+        return retValue;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,8 +87,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         jPanel1.add(ID1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 45, -1));
 
         Nombres.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
-        Nombres.setText("Nombres:");
-        jPanel1.add(Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+        Nombres.setText("Nombre:");
+        jPanel1.add(Nombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 45, -1, -1));
 
         Apellidos.setFont(new java.awt.Font("Roboto Black", 0, 14)); // NOI18N
         Apellidos.setText("Apellidos:");
@@ -103,12 +112,12 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtid, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 100, 10));
-        jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 100, 20));
-        jPanel1.add(txtnombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 42, 100, 20));
-        jPanel1.add(txtapellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 72, 100, 20));
+        jPanel1.add(txtDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 100, 25));
+        jPanel1.add(txtnombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 100, 25));
+        jPanel1.add(txtapellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 72, 100, 25));
 
-        jPanel1.add(cbIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 102, 100, 20));
-        jPanel1.add(txtedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 132, 100, 20));
+        jPanel1.add(cbIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 102, 100, 25));
+        jPanel1.add(txtedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 132, 100, 25));
         jPanel1.add(dffechanacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 100, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));

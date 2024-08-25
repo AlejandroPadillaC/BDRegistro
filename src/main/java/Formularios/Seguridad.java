@@ -4,12 +4,23 @@
  */
 package Formularios;
 import Clases.SegurLogica;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class Seguridad extends javax.swing.JFrame {
     
     SegurLogica security = new SegurLogica();
     public Seguridad() {
         initComponents();
+        setIconImage(getIconImage());
+        setTitle("Puntualify");
+    }
+    
+    @Override
+    public Image getIconImage() {
+    // Accede a la imagen en la carpeta resources
+        Image retValue = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/Imagenes/LogoPOO.png"));
+        return retValue;
     }
 
     /**
