@@ -19,21 +19,18 @@ Sprint 2:
 Sprint 3:
 
 - El empleador desea utilizar el reconocimiento facial como método para tomar la asistencia.
-- 
-- El empleador desea poder ajustar el tiempo límite de asistencia óptima
-- El empleador desea registrar el incumplimiento de tiempo en su sistema.
+- el empleador desea un apartado para la creacion de perfiles biometricos de sus empleados
+- El empleador desea implementar un modelo de reconocimiento actualizable de acuerdo a su cantidad de empleados
 
 Sprint 4: 
-
-- El empleador desea recibir una notificación después de 20 minutos desde el inicio del registro de asistencia.
-- El empleador desea que la notificacion de finalizacion del proceso de toma de asistencia llegue a un dispositivo remoto
-
-El empleador quiere seguridad de la información de asistencia. ****
-
-Sprint 5:
-
 - El empleador desea guardar los registros de asistencia diarios
 - El empleador desea poder acceder a los registros de asistencia de días pasados.
 - El empleador desea poder filtrar la información del registro de asistencia
+- el empleador desea poder observar los registros de asistencia con una grafica.
+
+Sprint 5:
+
+- El empleador desea recibir una notificación después de 20 minutos desde el inicio del registro de asistencia.
+- El empleador desea que la notificacion de finalizacion del proceso de toma de asistencia llegue a un dispositivo remoto
 
 
