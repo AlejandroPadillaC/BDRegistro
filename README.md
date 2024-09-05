@@ -1,4 +1,8 @@
 # BDRegistro
+
+Link DOcumento del proyecto:
+https://docs.google.com/document/d/1dpBeF7y4ahJQVFUkbjWxn8VxlttsujZCxqBjQAq2LLo/edit?usp=sharing
+
 Historias de usuario:
 
 Sprint 1:
