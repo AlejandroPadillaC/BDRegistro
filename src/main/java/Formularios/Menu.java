@@ -236,7 +236,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void RepAsisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepAsisActionPerformed
        dispose();
-        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\conexion.py");
+        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial\\GestAsistencia.py");
                 pb.directory(new File("C:\\Users\\Alejandro Padilla\\Documents\\Programacion\\POO\\Sistema-de-Reconocimiento-Facial"));
                 try {
                     Process p = pb.start();
