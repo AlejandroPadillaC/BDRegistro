@@ -155,31 +155,6 @@ class FaceCaptureApp:
         messagebox.showinfo("Información", f"Captura finalizada. Se guardaron {self.count} imágenes.")
         self.capture_window.destroy()
 
-    def pause_capture(self):
-        self.is_paused = True
-        self.pause_button.config(state=tk.DISABLED)
-        self.resume_button.config(state=tk.NORMAL)
-        self.stop_button.config(state=tk.NORMAL)
-
-    def resume_capture(self):
-        self.is_paused = False
-        self.resume_button.config(state=tk.DISABLED)
-        self.pause_button.config(state=tk.NORMAL)
-
-    def stop_capture(self):
-        self.recording = False
-        self.is_paused = False
-        self.stop_button.config(state=tk.DISABLED)
-        self.pause_button.config(state=tk.DISABLED)
-        self.resume_button.config(state=tk.DISABLED)
-
-        if self.cap is not None:
-            self.cap.release()
-        if self.out is not None:
-            self.out.release()
-        cv2.destroyAllWindows()
-        messagebox.showinfo("Información", "Grabación detenida y guardada.")
-        self.capture_window.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()
