@@ -7,7 +7,7 @@ Historias de usuario:
 
 Sprint 1:
 
-- El empleador desea visualizar una estructura elemental de la aplicación móvil para clarificar sus expectativas.
+- El empleador desea visualizar una estructura elemental de la aplicación para clarificar sus expectativas.
 - El empleador desea seleccionar la paleta de colores y el tipo de letra para definir la identidad de su empresa.
 - El empleador busca crear un logo y un eslogan para promocionar su marca.
 
@@ -34,7 +34,7 @@ Sprint 4:
 
 Sprint 5:
 
-- El empleador desea recibir una notificación después de 20 minutos desde el inicio del registro de asistencia.
-- El empleador desea que la notificacion de finalizacion del proceso de toma de asistencia llegue a un dispositivo remoto
+- El empleador desea recibir una notificación por el registro de cada persona, que contenga la hora en el cual se relizo el registro y la informacion del mismo.
+- El empleador desea que la notificacion de finalizacion del proceso de toma de asistencia llegue a un dispositivo remoto.
 
 
