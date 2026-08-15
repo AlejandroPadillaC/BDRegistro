@@ -17,7 +17,7 @@ This project demonstrates key Object-Oriented Design Principles (Encapsulation, 
 
 - **Facial Recognition Engine**: Real-time detection and biometric identification using pre-trained feature extraction models.
 - **Automated Attendance Logging**: Instant registration of user check-ins and check-outs with exact timestamps.
-- **Local SQL Storage**: Structured database schema managing user profiles, embeddings, and historical attendance logs.
+- **Local SQL Storage**: Structured database schema managing user profiles, and historical attendance logs.
 - **Automated WhatsApp Alerts**: Instant notification delivery to users/parents upon successful attendance verification via REST API.
 - **Modular OOP Architecture**: Robust decoupling of business logic, database queries, visual interfaces, and third-party services.
 
@@ -26,9 +26,9 @@ This project demonstrates key Object-Oriented Design Principles (Encapsulation, 
 ## 🛠️ Tech Stack
 
 - **Language**: Java (JDK 17+)
-- **Computer Vision / ML**: OpenCV / JavaCV / Model Wrapper Libraries
-- **Database**: Local SQL (SQLite / MySQL / PostgreSQL) via JDBC
-- **API & Messaging**: REST API Integration (HttpClient / OkHttp) for WhatsApp Gateway (Twilio, UltraMsg, or Green API)
+- **Computer Vision / ML**: OpenCV 
+- **Database**: Local SQL (MySQL) via JDBC
+- **API & Messaging**: REST API Integration  for WhatsApp Gateway (Twilio)
 - **GUI**: Java Swing / JavaFX
 - **Build System**: Maven / Gradle
 
@@ -44,25 +44,3 @@ The project follows clean architecture practices and OOP design patterns:
 - **Strategy Pattern / Interfaces**: Abstracted notification module (`NotificationService`), allowing easy swapping between messaging providers (WhatsApp, Email, SMS).
 
 ---
-
-## 📁 Suggested Directory Structure
-
-```text
-BDRegistro/
-├── database/
-│   └── schema.sql                 # SQL Initialization Scripts
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/bdregistro/
-│   │   │       ├── config/        # Environment & Connection Configs
-│   │   │       ├── controller/    # Application Controllers
-│   │   │       ├── dao/           # Data Access Objects (SQL)
-│   │   │       ├── model/         # Entity Classes (User, Log, FaceData)
-│   │   │       ├── service/       # Face Rec & WhatsApp Logic
-│   │   │       ├── view/          # User Interface (GUI)
-│   │   │       └── Main.java      # Application Launcher
-│   │   └── resources/             # Assets, trained models, icons
-├── .gitignore
-├── pom.xml
-└── README.md
