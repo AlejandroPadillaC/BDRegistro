@@ -1,40 +1,68 @@
-# BDRegistro
+# 🎭 BDRegistro - Facial Recognition Attendance & Automated WhatsApp Notification System
 
-Link DOcumento del proyecto:
-https://docs.google.com/document/d/1dpBeF7y4ahJQVFUkbjWxn8VxlttsujZCxqBjQAq2LLo/edit?usp=sharing
+![Java](https://img.shields.io/badge/Java-17+-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-Facial_Recognition-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white)
+![WhatsApp API](https://img.shields.io/badge/WhatsApp_API-Integration-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)
 
-Historias de usuario:
+## 📌 Overview
 
-Sprint 1:
+**BDRegistro** is an Object-Oriented Programming (OOP) application designed to automate attendance management using real-time facial recognition. Developed primarily in Java, the system captures live video feeds, identifies registered individuals through biometric model matching, records attendance timestamps into a local SQL database, and dispatches automated confirmation notifications via a WhatsApp API service.
 
-- El empleador desea visualizar una estructura elemental de la aplicación para clarificar sus expectativas.
-- El empleador desea seleccionar la paleta de colores y el tipo de letra para definir la identidad de su empresa.
-- El empleador busca crear un logo y un eslogan para promocionar su marca.
+This project demonstrates key Object-Oriented Design Principles (Encapsulation, Inheritance, Polymorphism, Abstraction) integrated with computer vision frameworks, database persistence, and external RESTful API consumption.
 
-Sprint 2:
+---
 
-- El empleador desea tener un menú principal que permita acceder a diversas opciones de uso del programa.
-- El empleador desea tener un apartado especifico para la creación de perfiles de los trabajadores.
-- El empleador desea poder guardar la informacion personal de sus empleados.
-- El empleador desea que el acceso a la información personal de sus empleados sea restringido.
-- El empleador desea poder modificar la información de perfiles guardados
-- El empleador desea poder eliminar los perfiles de los trabajadores
+## ✨ Key Features
 
-Sprint 3:
+- **Facial Recognition Engine**: Real-time detection and biometric identification using pre-trained feature extraction models.
+- **Automated Attendance Logging**: Instant registration of user check-ins and check-outs with exact timestamps.
+- **Local SQL Storage**: Structured database schema managing user profiles, embeddings, and historical attendance logs.
+- **Automated WhatsApp Alerts**: Instant notification delivery to users/parents upon successful attendance verification via REST API.
+- **Modular OOP Architecture**: Robust decoupling of business logic, database queries, visual interfaces, and third-party services.
 
-- El empleador desea utilizar el reconocimiento facial como método para tomar la asistencia.
-- el empleador desea un apartado para la creacion de perfiles biometricos de sus empleados
-- El empleador desea implementar un modelo de reconocimiento actualizable de acuerdo a su cantidad de empleados
+---
 
-Sprint 4: 
-- El empleador desea guardar los registros de asistencia diarios
-- El empleador desea poder acceder a los registros de asistencia de días pasados.
-- El empleador desea poder filtrar la información del registro de asistencia
-- el empleador desea poder observar los registros de asistencia con una grafica.
+## 🛠️ Tech Stack
 
-Sprint 5:
+- **Language**: Java (JDK 17+)
+- **Computer Vision / ML**: OpenCV / JavaCV / Model Wrapper Libraries
+- **Database**: Local SQL (SQLite / MySQL / PostgreSQL) via JDBC
+- **API & Messaging**: REST API Integration (HttpClient / OkHttp) for WhatsApp Gateway (Twilio, UltraMsg, or Green API)
+- **GUI**: Java Swing / JavaFX
+- **Build System**: Maven / Gradle
 
-- El empleador desea recibir una notificación por el registro de cada persona, que contenga la hora en el cual se relizo el registro y la informacion del mismo.
-- El empleador desea que la notificacion de finalizacion del proceso de toma de asistencia llegue a un dispositivo remoto.
+---
 
+## 🏗️ System Architecture & Design Patterns
 
+The project follows clean architecture practices and OOP design patterns:
+
+- **Model-View-Controller (MVC)**: Separates UI components, business logic, and database entities.
+- **Data Access Object (DAO)**: Encapsulated SQL operations for user records and attendance logs.
+- **Singleton Pattern**: Ensures single instance management for Database Connections and API HTTP Clients.
+- **Strategy Pattern / Interfaces**: Abstracted notification module (`NotificationService`), allowing easy swapping between messaging providers (WhatsApp, Email, SMS).
+
+---
+
+## 📁 Suggested Directory Structure
+
+```text
+BDRegistro/
+├── database/
+│   └── schema.sql                 # SQL Initialization Scripts
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/bdregistro/
+│   │   │       ├── config/        # Environment & Connection Configs
+│   │   │       ├── controller/    # Application Controllers
+│   │   │       ├── dao/           # Data Access Objects (SQL)
+│   │   │       ├── model/         # Entity Classes (User, Log, FaceData)
+│   │   │       ├── service/       # Face Rec & WhatsApp Logic
+│   │   │       ├── view/          # User Interface (GUI)
+│   │   │       └── Main.java      # Application Launcher
+│   │   └── resources/             # Assets, trained models, icons
+├── .gitignore
+├── pom.xml
+└── README.md
