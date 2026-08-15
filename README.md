@@ -29,8 +29,8 @@ This project demonstrates key Object-Oriented Design Principles (Encapsulation, 
 - **Computer Vision / ML**: OpenCV 
 - **Database**: Local SQL (MySQL) via JDBC
 - **API & Messaging**: REST API Integration  for WhatsApp Gateway (Twilio)
-- **GUI**: Java Swing / JavaFX
-- **Build System**: Maven / Gradle
+- **GUI**: Java Swing 
+- **Build System**: Maven
 
 ---
 
